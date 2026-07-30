@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O meni — Milica Divine Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#D79F2E;--gold-deep:#C28D2D;--gold-soft:#F5C988;
+  --baby-pink:#F7BAC9;--pink-soft:#FBE6EB;--pink-mid:#F4C9D5;
+  --cream:#F9EFED;--pink-beige:#F1E3E0;--brown:#5C4523;--brown-soft:#8A6E47;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:'EB Garamond',serif;font-size:18px;line-height:1.8;overflow-x:hidden}
+
+/* NAV (shared) */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(249,239,237,0.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(215,159,46,0.18)}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo .nl-name{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1.25rem}
+.nav-logo .nl-code{font-family:'Cormorant',serif;color:var(--baby-pink);letter-spacing:0.25em;font-size:0.7rem;margin-left:0.25em;align-self:flex-end;margin-bottom:0.28rem}
+.nav-links{display:flex;gap:2.4rem;list-style:none;align-items:center}
+.nav-links a{font-family:'EB Garamond',serif;font-size:1rem;color:var(--brown);text-decoration:none;letter-spacing:0.04em;transition:color 0.3s;position:relative}
+.nav-links a.active{color:var(--gold)}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{padding:0.5rem 1.4rem;border:1px solid var(--gold);color:var(--gold-deep)!important;border-radius:2rem;font-size:0.9rem!important}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--gold);color:var(--white)!important}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.burger span{width:24px;height:2px;background:var(--brown);display:block}
+/* dropdown */
+.has-dropdown{position:relative}
+.dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);background:var(--cream);border:1px solid rgba(215,159,46,0.25);border-radius:14px;padding:0.5rem;min-width:240px;box-shadow:0 20px 50px rgba(92,69,35,0.16);opacity:0;visibility:hidden;transition:all 0.28s;z-index:120;display:flex;flex-direction:column;gap:0.1rem}
+.has-dropdown:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(7px)}
+.dropdown a{padding:0.6rem 1rem;border-radius:9px;font-size:0.98rem;white-space:nowrap;color:var(--brown);text-decoration:none;transition:all 0.2s}
+.dropdown a::after{display:none!important}
+.dropdown a:hover{background:rgba(215,159,46,0.12);color:var(--gold-deep)}
+.caret{font-size:0.7em;color:var(--gold-deep)}
+
+/* HERO */
+.about-hero{position:relative;padding:9rem 2rem 4rem;text-align:center;overflow:hidden;
+  background:radial-gradient(ellipse 70% 55% at 50% 20%, rgba(247,186,201,0.45) 0%, transparent 60%),linear-gradient(165deg,var(--pink-soft) 0%,var(--cream) 60%)}
+.about-hero .eyebrow{font-family:'Cormorant',serif;letter-spacing:0.35em;font-size:0.85rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.about-hero h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.6rem,6vw,4.4rem);color:var(--brown);line-height:1.05}
+.about-hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:400;display:block}
+.about-hero .role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--brown-soft);margin-top:1.2rem}
+
+/* INTRO */
+.intro{padding:5rem 0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 2rem}
+.intro-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:4rem;align-items:start}
+.intro-photo{position:relative;position:sticky;top:6rem}
+.intro-photo img{width:100%;border-radius:200px 200px 14px 14px;display:block;box-shadow:0 30px 60px rgba(92,69,35,0.14)}
+.intro-photo::before{content:'';position:absolute;inset:-16px;border:1px solid var(--gold-soft);border-radius:210px 210px 20px 20px;z-index:-1}
+
+/* PROSE */
+.prose{max-width:760px;margin:0 auto;padding:0 2rem}
+.prose p{margin-bottom:1.5rem;color:var(--brown);font-size:1.12rem}
+.prose .lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--brown-soft);line-height:1.55}
+.placements{display:inline-block;background:var(--white);border:1px solid var(--gold-soft);border-radius:14px;padding:1.2rem 1.6rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold-deep);margin:0.5rem 0 1.5rem;line-height:1.6}
+
+/* PULL QUOTE */
+.pullquote{padding:4rem 2rem;text-align:center;margin:3rem 0;background:linear-gradient(135deg,var(--baby-pink) 0%,var(--pink-mid) 70%,var(--gold-soft) 150%)}
+.pullquote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.5rem,3.5vw,2.3rem);line-height:1.45;color:var(--white);max-width:820px;margin:0 auto;text-shadow:0 1px 12px rgba(140,80,40,0.18)}
+
+/* CLOSING */
+.closing{padding:5rem 2rem 6rem;text-align:center;background:var(--white)}
+.closing .wrap-narrow{max-width:720px;margin:0 auto}
+.closing p{font-size:1.12rem;color:var(--brown);margin-bottom:1.4rem}
+.closing .divine-line{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.2rem,5vw,3.4rem);color:var(--gold);letter-spacing:0.02em;margin:2.5rem 0 1.5rem;line-height:1.15}
+.closing .welcome{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--brown-soft);line-height:1.5;margin-bottom:0.6rem}
+.closing .trinity{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold-deep)}
+.sig-block{margin-top:3rem}
+.sig-block .sig{font-family:'Pinyon Script',cursive;font-size:2.4rem;color:var(--gold);line-height:1}
+.sig-block .tag{font-family:'Cormorant',serif;letter-spacing:0.28em;text-transform:uppercase;font-size:0.82rem;color:var(--baby-pink);margin-top:0.5rem}
+.closing .btn{display:inline-block;margin-top:2.5rem;padding:0.95rem 2.6rem;border-radius:2.5rem;background:var(--gold);color:#fff;font-family:'Cormorant',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all 0.35s}
+.closing .btn:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 10px 25px rgba(194,141,45,0.25)}
+
+/* FOOTER */
+footer{background:var(--brown);color:rgba(255,255,255,0.75);text-align:center;padding:4rem 2rem 2.5rem}
+footer .name{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-soft);font-size:1.7rem;display:block;line-height:1}
+footer .code{font-family:'Cormorant',serif;color:var(--baby-pink);letter-spacing:0.4em;font-size:0.85rem;margin-left:0.4em;display:block;margin-top:0.3rem}
+footer .ftag{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:0.4rem;display:block}
+footer .f-contact{margin:2rem 0;font-size:1rem;line-height:2}
+footer .f-contact a{color:rgba(255,255,255,0.8);text-decoration:none}
+footer .f-contact a:hover{color:var(--gold-soft)}
+footer .f-line{width:60px;height:1px;background:var(--gold);margin:2rem auto}
+footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+@media(max-width:880px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:74%;background:var(--cream);flex-direction:column;justify-content:center;gap:1.5rem;transition:right 0.4s;box-shadow:-10px 0 40px rgba(92,69,35,0.1);overflow-y:auto;padding:5rem 1rem}
+  .has-dropdown{width:100%;text-align:center}
+  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;min-width:auto;padding:0.4rem 0 0;margin-top:0.3rem}
+  .dropdown a{font-size:0.92rem;color:var(--brown-soft);text-align:center}
+  .caret{display:none}
+  .nav-links.open{right:0}
+  .burger{display:flex}
+  .intro-grid{grid-template-columns:1fr;gap:2.5rem}
+  .intro-photo{position:relative;top:0;max-width:360px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo-mark.png" alt="" style="height:38px;width:auto;display:block">
+    <span class="nl-name">Milica</span><span class="nl-code">DIVINE CODE</span>
+  </a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="o-meni.html" class="active">O meni</a></li>
+    <li class="has-dropdown">
+      <a href="index.html#usluge" class="dd-trigger">Usluge <span class="caret">▾</span></a>
+      <div class="dropdown">
+        <a href="golden-key.html">Golden Key analiza</a>
+        <a href="show-up.html">SHOW UP</a>
+        <a href="sunkissed.html">SUNKISSED</a>
+        <a href="golden-timing.html">Golden Timing</a>
+        <a href="golden-key-mentorship.html">Golden Key Mentorship</a>
+        <a href="cosmic-match.html">Cosmic Match</a>
+        <a href="golden-silence.html">Golden Silence</a>
+      </div>
+    </li>
+    <li><a href="index.html#proizvodi">Proizvodi</a></li>
+    <li><a href="afirmacije.html">Divine invokacija</a></li>
+    <li><a href="index.html#kontakt" class="nav-cta">Zakaži</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Meni"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<header class="about-hero">
+  <span class="eyebrow">O meni</span>
+  <h1>Milica <em>Radenković</em></h1>
+  <p class="role">Astrolog · intuitivni coach · osnivač koncepta Divine Code</p>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap intro-grid reveal">
+    <div class="intro-photo">
+      <img src="milica-portrait.jpg" alt="Milica Radenković">
+    </div>
+    <div>
+      <p class="lead">Ja sam Milica Radenković, astrolog, intuitivni coach i osnivač koncepta Divine Code.</p>
+      <div class="placements">Sunce u Lavu u 11. kući &nbsp;·&nbsp; podznak u Devici<br>vladar Ascendenta — Merkur u Lavu u 12. kući</div>
+      <p>Rođena sam u Zaječaru, a još od najranijih dana privlačila su me pitanja smisla, ljudske prirode i unutrašnjeg razvoja. Nakon završene gimnazije društveno-jezičkog smera, diplomirala sam na Pravnom fakultetu Univerziteta u Beogradu sa prosečnom ocenom 9.66.</p>
+      <p>Danas sam student treće godine Instituta za astrološka istraživanja i edukaciju — Johannes Kepler u Beogradu, gde se kontinuirano usavršavam kroz oblasti natalne, prediktivne i karmičko-reinkarnacijske astrologije. Ujedno pohađam module iz Energetske psihologije, sa posebnim osvrtom na rad sa Duhovnim životinjskim vodičima, Anđelima i Tehnologijom svesti.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROSE -->
+<section class="prose reveal">
+  <p>U svom radu objedinjujem primenjenu ljubav, znanje i iskustvo. Uvek se vodim svojim mirnim umom i vatrenim srcem. Moja najslađa podrška je moja ćerka Leonida.</p>
+  <p>Astrologiju posmatram kao umetnost svekolike lepote i istine, koja se kroz kosmičku svest praktično živi na svakodnevnom nivou.</p>
+  <p>Verujem da je ljudska svest prirodno otvorena za rast, razvoj i evoluciju, i da je upravo sposobnost promene i stalnog napredovanja jedan od najvećih darova koje smo dobili samim rođenjem.</p>
+</section>
+
+<!-- PULL QUOTE -->
+<div class="pullquote reveal">
+  <p>Natalna karta za mene nije ograničenje niti skup unapred određenih okolnosti. Ona je mapa potencijala, jezik duše i poziv da dublje razumemo sebe.</p>
+</div>
+
+<section class="prose reveal">
+  <p>Kada počnemo da posmatramo svoj život kroz drugačiju perspektivu, menjaju se i naše odluke, odnosi, iskustva i realnosti koje stvaramo. Upravo zato astrologiju ne doživljavam kao predviđanje budućnosti, već kao proces osvešćivanja sopstvene istine i preuzimanja odgovornosti za život koji živimo — kreirajući svoju najgrandiozniju i najuzvišeniju verziju.</p>
+  <p>Koncept <strong style="font-weight:600;color:var(--gold-deep)">Divine Code</strong> nastao je kroz lično iskustvo, dubok unutrašnji rad i meditaciju. Iz njega se razvila i <strong style="font-weight:600;color:var(--gold-deep)">Golden Key</strong> analiza natalne karte — moj autorski pristup koji objedinjuje astrologiju, intuitivni rad, coaching, energetsku svesnost i praktične alate za integraciju dobijenih uvida.</p>
+  <p>U svom radu negujem prostor za autentični izraz svakog ko sa mnom dođe u Divine kontakt. Za sve one koji žele da razumeju svoju svrhu, prepoznaju svoje darove, probude svoj potencijal i žive u skladu sa svojim autentičnim identitetom.</p>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap-narrow reveal">
+    <p>Verujem da svako od nas nosi jedinstven unutrašnji kod. Kada ga prepoznamo, prestajemo da tražimo odgovore izvan sebe i počinjemo da živimo u skladu sa onim što zaista jesmo — onako kako je od Univerzuma i zamišljeno.</p>
+    <div class="divine-line">You are the Divine Code.</div>
+    <p class="welcome">Dobro došli u prostor gde se susreću Astrologija, Identitet i Duhovnost.</p>
+    <p class="trinity">Sveto trojstvo, od Univerzuma nam poklonjeno.</p>
+    <div class="sig-block">
+      <div class="sig">Milica Divine Code</div>
+      <div class="tag">Astrology &amp; Identity</div>
+    </div>
+    <a href="index.html#golden-key" class="btn">Otkrij Golden Key</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:215px;max-width:62vw;height:auto;display:block;margin:0 auto">
+  <div class="f-contact">
+    <a href="mailto:contact@milicadivinecode.com">contact@milicadivinecode.com</a><br>
+    <a href="https://instagram.com/milica.divinecode">@milica.divinecode</a> · <a href="tel:+381600602442">+381 60 060 2442</a>
+  </div>
+  <div class="f-line"></div>
+  <p class="copyright">© 2026 Milica Divine Code · Sva prava zadržana</p>
+</footer>
+
+<script>
+const burger=document.getElementById('burger');
+const navlinks=document.getElementById('navlinks');
+burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

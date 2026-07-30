@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine invokacija — Milica Divine Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#D79F2E;--gold-deep:#C28D2D;--gold-soft:#F5C988;
+  --baby-pink:#F7BAC9;--pink-soft:#FBE6EB;--pink-mid:#F4C9D5;
+  --cream:#F9EFED;--pink-beige:#F1E3E0;--brown:#5C4523;--brown-soft:#8A6E47;
+}
+html,body{height:100%}
+body{
+  font-family:'EB Garamond',serif;color:var(--brown);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100vh;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 12%, rgba(247,186,201,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 90%, rgba(245,201,136,0.32) 0%, transparent 55%),
+    linear-gradient(165deg, var(--pink-soft) 0%, var(--cream) 48%, var(--pink-beige) 100%);
+}
+/* rotating rings backdrop */
+.rings{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:760px;height:760px;opacity:0.3;pointer-events:none;animation:spin 100s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+/* floating stars */
+.star{position:fixed;color:var(--gold);pointer-events:none;opacity:0;animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(0.6)}50%{opacity:0.7;transform:scale(1)}}
+
+.logo{position:relative;z-index:2;margin-bottom:2.5rem}
+.logo .name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:var(--gold);font-size:1.6rem;display:block;line-height:1}
+.logo .code{font-family:'Cormorant',serif;color:var(--baby-pink);letter-spacing:0.4em;font-size:0.78rem;font-weight:500;margin-left:0.4em}
+
+.eyebrow{position:relative;z-index:2;font-family:'Cormorant',serif;letter-spacing:0.32em;font-size:0.82rem;color:var(--gold-deep);text-transform:uppercase;margin-bottom:1rem}
+h1{position:relative;z-index:2;font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2rem,5vw,3rem);color:var(--brown);line-height:1.15;margin-bottom:0.4rem}
+h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:400}
+
+/* card */
+.card{
+  position:relative;z-index:2;max-width:560px;width:100%;margin:2.5rem 0;
+  background:rgba(255,255,255,0.72);backdrop-filter:blur(10px);
+  border:1px solid var(--gold-soft);border-radius:24px;padding:3.5rem 2.5rem;
+  box-shadow:0 30px 70px rgba(215,159,46,0.14);min-height:240px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.card .sun{margin-bottom:1.5rem}
+.affirm{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.45;color:var(--brown);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+}
+.affirm.fade{opacity:0;transform:translateY(12px)}
+.placeholder{color:var(--brown-soft);opacity:0.85}
+
+.btn{
+  position:relative;z-index:2;display:inline-flex;align-items:center;gap:0.6rem;
+  padding:1rem 2.6rem;border-radius:2.5rem;border:1px solid var(--gold);background:var(--gold);
+  color:#fff;font-family:'Cormorant',serif;font-size:1.05rem;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.35s;
+}
+.btn:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 12px 28px rgba(194,141,45,0.28)}
+.btn:active{transform:translateY(0)}
+
+.actions{position:relative;z-index:2;display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;justify-content:center}
+.copy{
+  background:transparent;border:1px solid var(--gold-soft);color:var(--gold-deep);
+  padding:1rem 1.6rem;border-radius:2.5rem;font-family:'Cormorant',serif;font-size:1rem;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;
+}
+.copy:hover{background:rgba(215,159,46,0.1)}
+
+.footnote{position:relative;z-index:2;margin-top:2.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brown-soft);font-size:1.05rem;opacity:0.8}
+.back{position:relative;z-index:2;margin-top:1.2rem;font-size:0.95rem}
+.back a{color:var(--gold-deep);text-decoration:none;border-bottom:1px solid var(--gold-soft)}
+</style>
+</head>
+<body>
+
+<svg class="rings" viewBox="0 0 200 200" fill="none"><g stroke="#D79F2E" stroke-width="0.4"><circle cx="100" cy="100" r="94"/><circle cx="100" cy="100" r="72"/><circle cx="100" cy="100" r="50"/></g></svg>
+
+<div class="logo">
+  <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:200px;max-width:68vw;height:auto;display:block;margin:0 auto">
+</div>
+
+<div class="eyebrow">Divine invokacija</div>
+<h1>Tvoja <em>dnevna afirmacija</em></h1>
+<p style="position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brown-soft);font-size:1.2rem;max-width:520px;margin:0.8rem auto 0;line-height:1.5">Jedna misao koja te centrira, inspiriše i podešava za dan pred tobom.</p>
+
+<div class="card" id="card" style="display:none">
+  <div class="sun">
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none"><g stroke="#F5C988" stroke-width="2" stroke-linecap="round"><path d="M22 62 a28 28 0 0 1 56 0"/><line x1="50" y1="16" x2="50" y2="34"/><line x1="36" y1="20" x2="41" y2="36"/><line x1="64" y1="20" x2="59" y2="36"/></g></svg>
+  </div>
+  <p class="affirm" id="affirm"></p>
+</div>
+
+<div class="actions">
+  <button class="btn" onclick="draw()"><span>✦</span> Otkrij afirmaciju</button>
+  <button class="copy" id="copyBtn" onclick="copyAff()" style="display:none">Kopiraj</button>
+</div>
+
+<p class="footnote">Vrati se sutra po novu svetlosnu nit.</p>
+<p class="back"><a href="index.html">← Nazad na sajt</a></p>
+
+<script>
+const affirmations = [
+  "Astrologija me ne ograničava. Ona me inspiriše.",
+  "Danas biram da živim svoje Sunce.",
+  "Moj identitet je moj najveći izvor snage.",
+  "Danas biram jasnoću umesto straha.",
+  "Verujem ritmu svog života.",
+  "Svetlost koju tražim već postoji u meni.",
+  "Prisutnost je moj najveći kvalitet.",
+  "Moja autentičnost otvara prava vrata.",
+  "Sve što gradim, gradim iz svog centra.",
+  "Moja energija prethodi svakom rezultatu.",
+  "Svaki novi dan je prilika da živim svoje potencijale.",
+  "Danas govorim, biram i stvaram u skladu sa sobom.",
+  "Nije aspekt problem. Nivo svesti jeste.",
+  "Pronađi svoju strast. Ne odustaj.",
+  "Stavi sebe u svoje Sunce.",
+  "Ti biraš.",
+  "Natalna karta je moj izvor inspiracije.",
+  "Obrati pažnju na detalje.",
+  "Rast dolazi razvojem svesti.",
+  "Svakoga dana ljudi odlaze srećniji nakon susreta sa mnom.",
+  "Centrirana u svojoj istini, ljubavi i lepoti, ja sam duhovni i mentalni magnet za svekoliko obilje.",
+  "Moja energija uvek radi za mene.",
+  "Sve moje meni dolazi.",
+  "Neka se sve što danas dotaknem pretvori u zlato.",
+  "Neka svaka moja reč danas bude invokacija ljubavi, jasnoće i svega što želim da stvorim.",
+  "Danas biram da sijam kako za sebe tako i za celu zajednicu.",
+  "Moje prisustvo govori pre mojih reči.",
+  "Svaki korak koji napravim vodi me bliže mom pozivu.",
+  "Univerzum podržava sve što stvaram iz ljubavi.",
+  "Moje Sunce pokazuje put. Moj um je miran.",
+  "Danas stvaram iz inspiracije, a ne iz pritiska.",
+  "U svakom izazovu postoji novi nivo svesti.",
+  "Moj mir je moja najveća snaga.",
+  "Zahvalnost otvara vrata novim mogućnostima.",
+  "Verujem svom unutrašnjem ritmu.",
+  "Moja intuicija i moj razum sarađuju.",
+  "Danas biram ono što me posebno raduje.",
+  "Svaki susret nosi dar.",
+  "Sve što mi je potrebno dolazi u pravom trenutku.",
+  "Živim svoju natalnu kartu sa sve više jasnoće i radosti.",
+  "Povezana sam sa Majkom Zemljom u svakom trenutku. Moje telo je mirno, stabilno i sigurno.",
+  "Lakoća je moje prirodno stanje.",
+  "Moj život je zamišljen da bude protočan, sladak, inspirativan i ispunjen radošću.",
+  "Svakoga dana negujem ritual zahvalnosti.",
+  "U svakom trenutku imam sve ono što mi je zaista potrebno.",
+  "Moj unutrašnji mir je temelj svega što stvaram.",
+  "Danas dopuštam životu da me prijatno iznenadi.",
+  "Sve što mi pripada dolazi mi sa lakoćom.",
+  "Krećem se kroz život sa poverenjem, jasnoćom i radošću.",
+  "Danas biram mir umesto žurbe.",
+  "Usklađena sam sa sobom, sa životom i sa ritmom Univerzuma.",
+  "Što sam više u svom centru, to više lepote i obilja prirodno dolazi u moj život.",
+  "Moja zahvalnost umnožava sve blagoslove koje primam.",
+  "Danas dišem lako, stvaram lako i živim lako."
+];
+
+const el = document.getElementById('affirm');
+const card = document.getElementById('card');
+const copyBtn = document.getElementById('copyBtn');
+let last = -1;
+
+function draw(){
+  let i;
+  do { i = Math.floor(Math.random()*affirmations.length); } while(i===last && affirmations.length>1);
+  last = i;
+  if(card.style.display==='none'){ card.style.display='flex'; }
+  el.classList.add('fade');
+  setTimeout(()=>{
+    el.textContent = affirmations[i];
+    el.classList.remove('fade');
+    copyBtn.style.display='inline-block';
+  }, 320);
+}
+
+function copyAff(){
+  navigator.clipboard.writeText(el.textContent + "  ✦ Milica Divine Code").then(()=>{
+    const old = copyBtn.textContent;
+    copyBtn.textContent = "Kopirano ✦";
+    setTimeout(()=>copyBtn.textContent = old, 1600);
+  });
+}
+
+// sprinkle a few twinkling stars
+const symbols=['✦','✧','·'];
+for(let i=0;i<14;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  s.style.left=Math.random()*100+'vw';
+  s.style.top=Math.random()*100+'vh';
+  s.style.fontSize=(Math.random()*14+8)+'px';
+  s.style.animationDelay=(Math.random()*4)+'s';
+  document.body.appendChild(s);
+}
+</script>
+</body>
+</html>

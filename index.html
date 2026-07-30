@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milica Divine Code — Astrology &amp; Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#D79F2E;
+  --gold-deep:#C28D2D;
+  --gold-soft:#F5C988;
+  --baby-pink:#F7BAC9;
+  --pink-soft:#FBE6EB;
+  --pink-mid:#F4C9D5;
+  --cream:#F9EFED;
+  --pink-beige:#F1E3E0;
+  --brown:#5C4523;
+  --brown-soft:#8A6E47;
+  --gray:#504E4F;
+  --white:#fff;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--brown);
+  font-family:'EB Garamond',serif;
+  font-size:18px;
+  line-height:1.75;
+  overflow-x:hidden;
+}
+.serif-display{font-family:'Cormorant',serif}
+.serif-italic{font-family:'Cormorant Garamond',serif;font-style:italic}
+
+/* ============ LOGO ============ */
+.logo-mark{display:inline-block;line-height:0}
+.logo-full{text-align:center;line-height:1}
+.logo-full .name{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  color:var(--gold);font-size:1.9rem;margin-top:0.3rem;display:block;
+}
+.logo-full .code{
+  font-family:'Cormorant',serif;color:var(--baby-pink);
+  letter-spacing:0.42em;font-size:1.05rem;font-weight:500;
+  margin-left:0.42em;display:block;
+}
+.logo-full .tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  color:var(--brown-soft);font-size:0.9rem;margin-top:0.4rem;display:block;letter-spacing:0.02em;
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(249,239,237,0.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(215,159,46,0.18);
+  transition:padding 0.3s;
+}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo .nl-name{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1.25rem}
+.nav-logo .nl-code{font-family:'Cormorant',serif;color:var(--baby-pink);letter-spacing:0.25em;font-size:0.7rem;margin-left:0.25em;align-self:flex-end;margin-bottom:0.28rem}
+.nav-links{display:flex;gap:2.4rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'EB Garamond',serif;font-size:1rem;color:var(--brown);
+  text-decoration:none;letter-spacing:0.04em;transition:color 0.3s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;
+  background:var(--gold);transition:width 0.3s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  padding:0.5rem 1.4rem;border:1px solid var(--gold);color:var(--gold-deep)!important;
+  border-radius:2rem;font-size:0.9rem!important;
+}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--gold);color:var(--white)!important}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.burger span{width:24px;height:2px;background:var(--brown);display:block}
+/* dropdown */
+.has-dropdown{position:relative}
+.dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);background:var(--cream);border:1px solid rgba(215,159,46,0.25);border-radius:14px;padding:0.5rem;min-width:240px;box-shadow:0 20px 50px rgba(92,69,35,0.16);opacity:0;visibility:hidden;transition:all 0.28s;z-index:120;display:flex;flex-direction:column;gap:0.1rem}
+.has-dropdown:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(7px)}
+.dropdown a{padding:0.6rem 1rem;border-radius:9px;font-size:0.98rem;white-space:nowrap;color:var(--brown);text-decoration:none;transition:all 0.2s}
+.dropdown a::after{display:none!important}
+.dropdown a:hover{background:rgba(215,159,46,0.12);color:var(--gold-deep)}
+.caret{font-size:0.7em;color:var(--gold-deep)}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;
+  background:linear-gradient(160deg, var(--pink-soft) 0%, var(--cream) 45%, var(--pink-beige) 100%);
+}
+/* the full composite (Milica + lion) */
+.hero-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 14%;z-index:0;
+}
+/* cream panel on the right so text sits on a readable surface that blends into the site */
+.hero-scrim{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(249,239,237,0) 34%, rgba(249,239,237,0.5) 54%, rgba(249,239,237,0.9) 76%, var(--cream) 100%),
+    linear-gradient(0deg, rgba(249,239,237,0.5) 0%, transparent 26%);
+}
+.hero-inner{
+  position:relative;z-index:2;max-width:1240px;margin:0 auto;width:100%;
+  min-height:100vh;padding:8rem 3.5rem 3rem;
+  display:flex;align-items:center;justify-content:flex-end;
+}
+.hero-text{text-align:left;max-width:460px}
+.hero-eyebrow{
+  font-family:'Cormorant',serif;letter-spacing:0.32em;font-size:0.82rem;
+  color:var(--gold-deep);text-transform:uppercase;margin-bottom:1.2rem;display:block;
+}
+.hero h1{
+  font-family:'Cormorant',serif;font-weight:500;
+  font-size:clamp(2.4rem,4.4vw,4rem);line-height:1.12;color:var(--brown);letter-spacing:0.01em;
+}
+.hero h1 .sun{color:var(--gold);font-size:0.66em;vertical-align:0.12em}
+.hero p.sub{
+  font-size:1.2rem;color:var(--brown);margin:1.5rem 0 0.3rem;max-width:430px;
+  font-family:'EB Garamond',serif;line-height:1.55;
+}
+.hero p.script{
+  font-family:'Pinyon Script',cursive;font-size:1.95rem;color:var(--gold-deep);
+  margin:0.5rem 0 1.8rem;line-height:1.2;
+}
+.hero-btns{
+  display:flex;justify-content:flex-start;gap:0.9rem;flex-wrap:wrap;
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.btn{
+  display:inline-block;padding:0.95rem 2.6rem;border-radius:2.5rem;
+  font-family:'Cormorant',serif;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;transition:all 0.35s;border:1px solid var(--gold);
+}
+.btn-primary{background:var(--gold);color:var(--white)}
+.btn-primary:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 10px 25px rgba(194,141,45,0.25)}
+.btn-outline{background:rgba(255,255,255,0.55);color:var(--gold-deep);margin-left:0}
+.btn-outline:hover{background:rgba(215,159,46,0.1)}
+
+/* divider */
+.starline{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1.6rem 0;color:var(--gold)}
+.starline::before,.starline::after{content:'';flex:1;max-width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft))}
+.starline::after{background:linear-gradient(90deg,var(--gold-soft),transparent)}
+
+/* ============ SECTION SHELL ============ */
+section{position:relative}
+.wrap{max-width:1120px;margin:0 auto;padding:0 2rem}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 4rem}
+.sec-head .eyebrow{font-family:'Cormorant',serif;letter-spacing:0.32em;font-size:0.82rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:1rem}
+.sec-head h2{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2rem,4vw,2.9rem);color:var(--brown);line-height:1.2;margin-bottom:1rem}
+.sec-head p{color:var(--brown-soft);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.25rem}
+
+/* ============ ABOUT ============ */
+.about{padding:7rem 0;background:var(--white)}
+.about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:5rem;align-items:center}
+.about-photo{position:relative}
+.about-photo img{width:100%;border-radius:200px 200px 12px 12px;display:block;box-shadow:0 30px 60px rgba(92,69,35,0.12)}
+.about-photo::before{
+  content:'';position:absolute;inset:-18px;border:1px solid var(--gold-soft);
+  border-radius:210px 210px 18px 18px;z-index:-1;
+}
+.about-text .eyebrow{font-family:'Cormorant',serif;letter-spacing:0.3em;font-size:0.8rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:1rem}
+.about-text h2{font-family:'Cormorant',serif;font-weight:500;font-size:2.4rem;line-height:1.25;color:var(--brown);margin-bottom:1.5rem}
+.about-text p{color:var(--brown-soft);margin-bottom:1.2rem;font-size:1.12rem}
+.about-text .sig{font-family:'Pinyon Script',cursive;font-size:2.2rem;color:var(--gold);margin-top:1rem}
+
+/* ============ GOLDEN KEY (PRIMARY) ============ */
+.golden{
+  padding:7rem 0;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(247,186,201,0.5) 0%, transparent 60%),
+    linear-gradient(160deg, var(--pink-soft) 0%, var(--cream) 100%);
+}
+.golden-badge{
+  display:inline-block;font-family:'Cormorant',serif;letter-spacing:0.28em;font-size:0.78rem;
+  text-transform:uppercase;color:var(--gold-deep);border:1px solid var(--gold);border-radius:2rem;
+  padding:0.45rem 1.5rem;margin-bottom:2rem;background:rgba(255,255,255,0.5);
+}
+.golden h2{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.4rem,5vw,3.8rem);color:var(--brown);line-height:1.1;margin-bottom:0.4rem}
+.golden h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:400}
+.golden .lead{font-size:1.3rem;font-style:italic;font-family:'Cormorant Garamond',serif;color:var(--brown-soft);max-width:660px;margin:1.5rem auto 2.5rem;line-height:1.65}
+.golden-pillars{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin:3rem auto;max-width:760px}
+.pillar{flex:1;min-width:180px}
+.pillar .pmark{font-family:'Cormorant',serif;font-size:1.6rem;color:var(--gold);margin-bottom:0.5rem}
+.pillar h4{font-family:'Cormorant',serif;font-weight:600;letter-spacing:0.05em;color:var(--brown);font-size:1.15rem;margin-bottom:0.4rem}
+.pillar p{font-size:1rem;color:var(--brown-soft)}
+
+/* ============ SERVICES ============ */
+.services{padding:7rem 0;background:var(--white)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.svc{
+  border:1px solid var(--pink-beige);border-radius:16px;padding:2.4rem 1.9rem;text-align:center;
+  transition:all 0.35s;background:var(--cream);position:relative;overflow:hidden;
+  text-decoration:none;color:inherit;display:block;
+}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);transform:scaleX(0);transition:transform 0.4s}
+.svc:hover::before{transform:scaleX(1)}
+.svc:hover{transform:translateY(-6px);border-color:var(--gold-soft);box-shadow:0 20px 40px rgba(92,69,35,0.08)}
+.svc .glyph{font-family:'Cormorant',serif;font-size:2rem;color:var(--gold);display:block;margin-bottom:1rem}
+.svc h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.25rem;letter-spacing:0.02em;color:var(--brown);margin-bottom:0.9rem}
+.svc p{font-size:1rem;color:var(--brown-soft);line-height:1.65;margin-bottom:1.4rem}
+.svc .meta{font-family:'Cormorant',serif;letter-spacing:0.08em;font-size:0.85rem;color:var(--gold-deep);border-top:1px solid var(--pink-beige);padding-top:1rem;display:block}
+
+/* ============ QUOTE STRIP ============ */
+.quote{
+  padding:6rem 2rem;text-align:center;
+  background:linear-gradient(135deg, var(--baby-pink) 0%, var(--pink-mid) 60%, var(--gold-soft) 140%);
+  position:relative;overflow:hidden;
+}
+.quote blockquote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.7rem,3.5vw,2.6rem);line-height:1.4;color:var(--white);
+  max-width:840px;margin:0 auto;position:relative;z-index:2;
+  text-shadow:0 1px 12px rgba(140,80,40,0.18);
+}
+.quote .qsrc{display:block;margin-top:1.5rem;font-style:normal;font-family:'Cormorant',serif;letter-spacing:0.2em;font-size:0.9rem;color:var(--brown);text-transform:uppercase}
+
+/* ============ PRODUCTS (digital) ============ */
+.products{padding:7rem 0;background:var(--cream)}
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.prod{display:flex;gap:1.5rem;align-items:flex-start;background:var(--white);border:1px solid var(--pink-beige);border-radius:16px;padding:2rem}
+.prod .picon{flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--pink-soft);display:flex;align-items:center;justify-content:center;font-family:'Cormorant',serif;font-size:1.5rem;color:var(--gold)}
+.prod h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.3rem;color:var(--brown);margin-bottom:0.5rem}
+.prod p{font-size:1rem;color:var(--brown-soft);line-height:1.6}
+
+/* ============ GALLERY ============ */
+.gallery{padding:5rem 0 7rem;background:var(--cream)}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.gal-grid img{width:100%;height:380px;object-fit:cover;border-radius:12px;display:block;filter:saturate(1.02);transition:transform 0.5s}
+.gal-grid img:hover{transform:scale(1.02)}
+
+/* ============ NEWSLETTER ============ */
+.newsletter{padding:7rem 2rem;text-align:center;background:linear-gradient(160deg,var(--pink-soft),var(--cream))}
+.nl-card{
+  max-width:600px;margin:0 auto;background:var(--white);border:1px solid var(--gold-soft);
+  border-radius:24px;padding:3.5rem 3rem;box-shadow:0 30px 60px rgba(215,159,46,0.1);
+}
+.nl-card .eyebrow{font-family:'Cormorant',serif;letter-spacing:0.3em;font-size:0.8rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:1rem}
+.nl-card h2{font-family:'Cormorant',serif;font-weight:500;font-size:2rem;color:var(--brown);margin-bottom:1rem;line-height:1.2}
+.nl-card p{color:var(--brown-soft);margin-bottom:2rem;font-size:1.08rem}
+.nl-form{display:flex;gap:0.6rem;max-width:440px;margin:0 auto}
+.nl-form input{
+  flex:1;padding:0.9rem 1.3rem;border:1px solid var(--pink-beige);border-radius:2rem;
+  font-family:'EB Garamond',serif;font-size:1rem;color:var(--brown);outline:none;background:var(--cream);
+}
+.nl-form input:focus{border-color:var(--gold)}
+.nl-form input::placeholder{color:var(--brown-soft);opacity:0.6}
+.nl-form button{
+  padding:0.9rem 1.8rem;border:none;border-radius:2rem;background:var(--gold);color:var(--white);
+  cursor:pointer;font-family:'Cormorant',serif;letter-spacing:0.08em;font-size:0.95rem;text-transform:uppercase;transition:background 0.3s;white-space:nowrap;
+}
+.nl-form button:hover{background:var(--gold-deep)}
+.nl-note{font-size:0.9rem;color:var(--brown-soft);margin-top:1rem;font-style:italic;opacity:0.8}
+.nl-success{display:none;color:var(--gold-deep);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-top:1.2rem}
+
+/* ============ FOOTER ============ */
+footer{background:var(--brown);color:rgba(255,255,255,0.75);text-align:center;padding:4rem 2rem 2.5rem}
+footer .f-logo .name{color:var(--gold-soft);font-size:1.7rem}
+footer .f-logo .code{color:var(--baby-pink)}
+footer .f-logo .tag{color:rgba(255,255,255,0.6)}
+footer .f-contact{margin:2rem 0;font-size:1rem;line-height:2}
+footer .f-contact a{color:rgba(255,255,255,0.8);text-decoration:none}
+footer .f-contact a:hover{color:var(--gold-soft)}
+footer .f-line{width:60px;height:1px;background:var(--gold);margin:2rem auto}
+footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
+
+/* fade-in */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ TESTIMONIALS (moving) ============ */
+.testimonials{padding:7rem 0 6rem;background:var(--white);overflow:hidden}
+.tcarousel{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ttrack{display:flex;gap:1.6rem;width:max-content;animation:slide 42s linear infinite}
+.tcarousel:hover .ttrack{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tcard{
+  flex:0 0 auto;width:360px;background:var(--cream);border:1px solid var(--pink-beige);
+  border-radius:18px;padding:2.2rem 2rem;position:relative;
+}
+.tcard .stars{color:var(--gold);letter-spacing:0.15em;font-size:0.95rem;margin-bottom:0.9rem}
+.tcard p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;line-height:1.55;color:var(--brown);margin-bottom:1.4rem}
+.tcard .who{font-family:'Cormorant',serif;letter-spacing:0.12em;font-size:0.82rem;text-transform:uppercase;color:var(--gold-deep)}
+.tcard::before{content:'\201C';position:absolute;top:0.4rem;right:1.3rem;font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--gold-soft);opacity:0.5;line-height:1}
+
+@media(max-width:880px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:74%;background:var(--cream);flex-direction:column;justify-content:center;gap:1.5rem;transition:right 0.4s;box-shadow:-10px 0 40px rgba(92,69,35,0.1);overflow-y:auto;padding:5rem 1rem}
+  .nav-links.open{right:0}
+  .burger{display:flex;z-index:130}
+  .has-dropdown{width:100%;text-align:center}
+  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;min-width:auto;padding:0.4rem 0 0;margin-top:0.3rem}
+  .dropdown a{font-size:0.92rem;color:var(--brown-soft);text-align:center}
+  .caret{display:none}
+  .about-grid,.svc-grid,.prod-grid,.gal-grid{grid-template-columns:1fr}
+  .gal-grid img{height:320px}
+  .golden-pillars{flex-direction:column;gap:2rem}
+  .nl-form{flex-direction:column}
+  .btn-outline{margin-left:0;margin-top:0.8rem}
+  /* hero: full-bleed photo, text overlaid at the bottom over a soft gradient */
+  .hero{min-height:92vh;display:flex;align-items:flex-end}
+  .hero-bg{position:absolute;inset:0;height:100%;width:100%;object-position:12% 14%}
+  .hero-scrim{display:block;background:linear-gradient(180deg, transparent 16%, rgba(249,239,237,0.55) 38%, rgba(249,239,237,0.9) 60%, var(--cream) 84%)}
+  .hero-inner{min-height:auto;padding:0 1.4rem 2.6rem;justify-content:center;align-items:flex-end}
+  .hero-text{text-align:center;max-width:520px;margin:0 auto;width:100%}
+  .hero h1{font-size:clamp(2rem,8.5vw,2.7rem);text-shadow:0 1px 16px rgba(249,239,237,0.95)}
+  .hero-eyebrow{text-shadow:0 1px 12px rgba(249,239,237,0.95)}
+  .hero p.sub{margin:1.1rem auto 0.2rem;font-size:1.1rem}
+  .hero p.script{font-size:1.6rem;margin:0.3rem 0 1.3rem}
+  .hero-btns{justify-content:center}
+  .tcard{width:300px}
+}
+.hero-btns .btn-outline{margin-left:0}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <a href="#top" class="nav-logo">
+    <img src="logo-mark.png" alt="" style="height:38px;width:auto;display:block">
+    <span class="nl-name">Milica</span><span class="nl-code">DIVINE CODE</span>
+  </a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="o-meni.html">O meni</a></li>
+    <li class="has-dropdown">
+      <a href="#usluge" class="dd-trigger">Usluge <span class="caret">▾</span></a>
+      <div class="dropdown">
+        <a href="golden-key.html">Golden Key analiza</a>
+        <a href="show-up.html">SHOW UP</a>
+        <a href="sunkissed.html">SUNKISSED</a>
+        <a href="golden-timing.html">Golden Timing</a>
+        <a href="golden-key-mentorship.html">Golden Key Mentorship</a>
+        <a href="cosmic-match.html">Cosmic Match</a>
+        <a href="golden-silence.html">Golden Silence</a>
+      </div>
+    </li>
+    <li><a href="#proizvodi">Proizvodi</a></li>
+    <li><a href="afirmacije.html">Divine invokacija</a></li>
+    <li><a href="#kontakt" class="nav-cta">Zakaži</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Meni"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <img class="hero-bg" src="milica-hero.jpg" alt="Milica Divine Code">
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Astrology &amp; Identity</span>
+      <h1>The Universe<br>Is Always<br>Within You <span class="sun">☉</span></h1>
+      <p class="sub">Centrirana u svojoj istini, lepoti i svekolikom bogatstvu.</p>
+      <p class="script">Take your inner home always within…</p>
+      <div class="hero-btns">
+        <a href="#golden-key" class="btn btn-primary">Otkrij svoj Divine Code ✦</a>
+        <a href="#usluge" class="btn btn-outline">Sve usluge</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="o-meni">
+  <div class="wrap about-grid reveal">
+    <div class="about-photo">
+      <img src="milica-portrait.jpg" alt="Milica — astrolog">
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">O meni</span>
+      <h2>Vodim te kroz tvoju<br>natalnu kartu</h2>
+      <p>Natalna karta je mapa duše — jedinstven kosmički nacrt koji nosiš od trenutka rođenja. Kroz čitanje natalne karte pomažem ti da razumeš sebe, obrasce koji se ponavljaju i darove koje nosiš u sebi.</p>
+      <p>Moj pristup spaja dubinsku intuiciju sa preciznim astrološkim znanjem. Svaka sesija je intimni, posvećeni razgovor — nikada generičan horoskop, već povratak tvom autentičnom identitetu.</p>
+      <div class="sig">Milica Divine Code</div>
+      <a href="o-meni.html" class="btn btn-outline" style="margin-left:0;margin-top:1.2rem">Cela priča →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOLDEN KEY (PRIMARY PRODUCT) ============ -->
+<section class="golden" id="golden-key">
+  <div class="wrap reveal">
+    <span class="golden-badge">Signature analiza</span>
+    <h2>Golden Key<br><em>analiza natalne karte</em></h2>
+    <p class="lead">Golden Key je moja autorska metoda — najdublje i najpreciznije čitanje tvoje natalne karte. Zlatni ključ koji otključava tvoj identitet, tvoje darove i tvoju životnu svrhu.</p>
+    <div class="golden-pillars">
+      <div class="pillar">
+        <div class="pmark">✦</div>
+        <h4>Personalizovano</h4>
+        <p>Sesija je u potpunosti prilagođena tvojoj karti i tvojim pitanjima.</p>
+      </div>
+      <div class="pillar">
+        <div class="pmark">◯</div>
+        <h4>Holistički</h4>
+        <p>Planete, znakovi, kuće i aspekti — celovita slika tvoje duše.</p>
+      </div>
+      <div class="pillar">
+        <div class="pmark">∞</div>
+        <h4>Transformativno</h4>
+        <p>Ne samo uvid, već ključ za stvarnu promenu i rast.</p>
+      </div>
+    </div>
+    <a href="golden-key.html" class="btn btn-primary">Rezerviši Golden Key</a>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="usluge">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Usluge</span>
+      <h2>Putovanja u svetlu zvezda</h2>
+      <p>Svaka sesija je prilagođena tebi i tvojim pitanjima</p>
+    </div>
+    <div class="svc-grid reveal">
+      <a class="svc" href="golden-key.html">
+        <span class="glyph"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#D79F2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block"><circle cx="12" cy="7" r="3.6"/><line x1="12" y1="10.6" x2="12" y2="20"/><line x1="12" y1="16" x2="15" y2="16"/><line x1="12" y1="18.5" x2="14.2" y2="18.5"/></svg></span>
+        <h3>Golden Key analiza natalne karte</h3>
+        <p>Srce Divine Code koncepta — autorski metod čitanja natalne karte. Zlatni ključ tvog identiteta, darova i svrhe.</p>
+        <span class="meta">130 € · 60–70 min</span>
+      </a>
+      <a class="svc" href="show-up.html">
+        <span class="glyph">☉</span>
+        <h3>SHOW UP</h3>
+        <p>Pojavi se kao najsvetlija verzija sebe. Rad na tvom Golden Identity kroz astrologiju, astro coaching i autorske tehnike.</p>
+        <span class="meta">150 € · 75 min</span>
+      </a>
+      <a class="svc" href="sunkissed.html">
+        <span class="glyph"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#D79F2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"/><line x1="18.8" y1="5.2" x2="17.1" y2="6.9"/><line x1="6.9" y1="17.1" x2="5.2" y2="18.8"/></svg></span>
+        <h3>SUNKISSED</h3>
+        <p>Aktivacija tvoje nove solarne godine. Analiza solarnog povratka uz autorski Divine Birthday Journal.</p>
+        <span class="meta">130 € · 60–70 min</span>
+      </a>
+      <a class="svc" href="golden-timing.html">
+        <span class="glyph"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#D79F2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block"><line x1="6" y1="3.5" x2="18" y2="3.5"/><line x1="6" y1="20.5" x2="18" y2="20.5"/><path d="M7.5 4 L12 12 L7.5 20"/><path d="M16.5 4 L12 12 L16.5 20"/></svg></span>
+        <h3>Golden Timing</h3>
+        <p>Izbor pravog trenutka kroz elekcionu astrologiju — za pokretanje biznisa, venčanje, selidbu i druge prekretnice.</p>
+        <span class="meta">100–300 €</span>
+      </a>
+      <a class="svc" href="golden-key-mentorship.html">
+        <span class="glyph"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#D79F2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block"><path d="M5 17 L3.5 8 L8.5 11.5 L12 6 L15.5 11.5 L20.5 8 L19 17 Z"/><line x1="5.5" y1="19.6" x2="18.5" y2="19.6"/></svg></span>
+        <h3>Golden Key Mentorship</h3>
+        <p>Najdublji individualni program 1:1. Mesečno mentorstvo da svoju natalnu kartu ne samo razumeš, već svesno živiš.</p>
+        <span class="meta">300 € / mesečno</span>
+      </a>
+      <a class="svc" href="cosmic-match.html">
+        <span class="glyph">♡</span>
+        <h3>Cosmic Match</h3>
+        <p>Kada se sretnu dve natalne karte. Sinastrija, kompozitni i Dejvison horoskop — dinamika i svrha vašeg odnosa.</p>
+        <span class="meta">130 € · 60–70 min</span>
+      </a>
+      <a class="svc" href="golden-silence.html">
+        <span class="glyph"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#D79F2E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block"><path d="M20.5 14.8 A8.2 8.2 0 1 1 10.6 4.2 A6.4 6.4 0 0 0 20.5 14.8 Z"/></svg></span>
+        <h3>Golden Silence</h3>
+        <p>Astro-coaching za unutrašnji mir i intuiciju. Rad kroz 12. kuću, Neptuna i tišinu u kojoj nastaju odgovori.</p>
+        <span class="meta">130 € · 75 min</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote">
+  <blockquote>
+    „Ništa što nije zapisano u tvojoj natalnoj karti — ne može se pojaviti u tvom životu. Tu su svi odgovori, ključevi i potencijali."
+    <span class="qsrc">— Milica Divine Code</span>
+  </blockquote>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="products" id="proizvodi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Digitalni proizvodi</span>
+      <h2>Alati za tvoju transformaciju</h2>
+      <p>Vodiči koje možeš koristiti svaki dan, u svom ritmu</p>
+    </div>
+    <div class="prod-grid reveal">
+      <div class="prod">
+        <div class="picon">✦</div>
+        <div>
+          <h3>Divine Birthday Journal</h3>
+          <p>Usaglasi svoje želje sa ritmom Univerzuma. Vodič kroz solarni povratak — prostor za tvoje namere, vizije i rituale za novu solarnu godinu.</p>
+        </div>
+      </div>
+      <div class="prod">
+        <div class="picon">☽</div>
+        <div>
+          <h3>Inner Self Workbook</h3>
+          <p>Radna sveska za povezivanje sa svojim unutrašnjim ja — vežbe, pitanja i refleksije za dublje razumevanje sebe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery">
+  <div class="wrap gal-grid reveal">
+    <img src="milica-smile.jpg" alt="Milica">
+    <img src="milica-yellow1.jpg" alt="Milica">
+    <img src="milica-yellow2.jpg" alt="Milica">
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="iskustva">
+  <div class="sec-head reveal">
+    <span class="eyebrow">Iskustva</span>
+    <h2>Reči onih koji su<br>ušli u Divine kontakt</h2>
+    <p>Priče sa putovanja kroz natalnu kartu</p>
+  </div>
+  <div class="tcarousel">
+    <div class="ttrack" id="ttrack">
+      <!-- cards injected & duplicated by script for a seamless loop -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="newsletter">
+  <div class="nl-card reveal">
+    <span class="eyebrow">Newsletter</span>
+    <h2>Golden Astro &amp;<br>Divine Stories</h2>
+    <p>Astrološki uvidi, lunarni ciklusi i lične priče iz svemira, direktno u tvoj inbox.</p>
+    <div class="nl-form">
+      <input type="email" id="email" placeholder="tvoja.adresa@email.com">
+      <button onclick="subscribe()">Pretplati se</button>
+    </div>
+    <p class="nl-note">Bez spama. Samo zvezde. Možeš se odjaviti u bilo kom trenutku.</p>
+    <p class="nl-success" id="nlsuccess">✦ Dobrodošla u kosmički krug. Proveri svoj inbox. ✦</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="kontakt">
+  <div class="f-logo">
+    <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:215px;max-width:62vw;height:auto;display:block;margin:0 auto">
+  </div>
+  <div class="f-contact">
+    <a href="mailto:contact@milicadivinecode.com">contact@milicadivinecode.com</a><br>
+    <a href="https://instagram.com/milica.divinecode">@milica.divinecode</a> · <a href="tel:+381600602442">+381 60 060 2442</a>
+  </div>
+  <div class="f-line"></div>
+  <p class="copyright">© 2026 Milica Divine Code · Sva prava zadržana</p>
+</footer>
+
+<script>
+// burger menu
+const burger=document.getElementById('burger');
+const navlinks=document.getElementById('navlinks');
+burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+
+// reveal on scroll
+const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// testimonials (placeholder — swap with real ones later)
+const testimonials=[
+  {t:"Golden Key analiza je bila prekretnica za mene. Prvi put sam razumela zašto se određeni obrasci ponavljaju — i kako da ih konačno promenim.",w:"Jelena M. · Beograd"},
+  {t:"Milica ima dar da vidi ono što mi sami ne možemo da vidimo u sebi. Osećala sam se viđeno i shvaćeno do najdublje tačke.",w:"Ana K. · Novi Sad"},
+  {t:"Posle SHOW UP konsultacije konačno sam počela da se pojavljujem za sebe. Jasnoća i energija koju sam dobila su neprocenjive.",w:"Marija T. · Niš"},
+  {t:"Nisam verovala u astrologiju dok nisam sela sa Milicom. Njena preciznost i toplina su me potpuno osvojile.",w:"Ivana P. · Kragujevac"},
+  {t:"Golden Timing mi je pomogao da donesem najvažniju odluku u pravom trenutku. Sve se posle toga poklopilo.",w:"Sofija R. · Subotica"},
+  {t:"Divine kontakt sa Milicom je iskustvo za sebe. Izašla sam sa sesije kao osveženija, jasnija verzija sebe.",w:"Teodora V. · Zemun"}
+];
+const track=document.getElementById('ttrack');
+function card(o){return `<div class="tcard"><div class="stars">★★★★★</div><p>${o.t}</p><div class="who">${o.w}</div></div>`;}
+// render twice for a seamless infinite loop
+track.innerHTML = testimonials.map(card).join('') + testimonials.map(card).join('');
+
+// newsletter
+function subscribe(){
+  const e=document.getElementById('email');
+  if(!e.value||!e.value.includes('@'))return;
+  e.value='';
+  document.getElementById('nlsuccess').style.display='block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Silence — Milica Divine Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#D79F2E;--gold-deep:#C28D2D;--gold-soft:#F5C988;
+  --baby-pink:#F7BAC9;--pink-soft:#FBE6EB;--pink-mid:#F4C9D5;
+  --cream:#F9EFED;--pink-beige:#F1E3E0;--brown:#5C4523;--brown-soft:#8A6E47;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:'EB Garamond',serif;font-size:18px;line-height:1.8;overflow-x:hidden}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(249,239,237,0.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(215,159,46,0.18)}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo .nl-name{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1.25rem}
+.nav-logo .nl-code{font-family:'Cormorant',serif;color:var(--baby-pink);letter-spacing:0.25em;font-size:0.7rem;margin-left:0.25em;align-self:flex-end;margin-bottom:0.28rem}
+.nav-links{display:flex;gap:2.2rem;list-style:none;align-items:center}
+.nav-links>li>a{font-family:'EB Garamond',serif;font-size:1rem;color:var(--brown);text-decoration:none;letter-spacing:0.04em;transition:color 0.3s;position:relative;cursor:pointer}
+.nav-links>li>a:hover{color:var(--gold)}
+.nav-cta{padding:0.5rem 1.4rem;border:1px solid var(--gold);color:var(--gold-deep)!important;border-radius:2rem;font-size:0.9rem!important}
+.nav-cta:hover{background:var(--gold);color:var(--white)!important}
+.caret{font-size:0.7em;color:var(--gold-deep)}
+/* dropdown */
+.has-dropdown{position:relative}
+.dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);background:var(--cream);border:1px solid rgba(215,159,46,0.25);border-radius:14px;padding:0.5rem;min-width:240px;box-shadow:0 20px 50px rgba(92,69,35,0.16);opacity:0;visibility:hidden;transition:all 0.28s;z-index:120;display:flex;flex-direction:column;gap:0.1rem}
+.has-dropdown:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(7px)}
+.dropdown a{padding:0.6rem 1rem;border-radius:9px;font-size:0.98rem;white-space:nowrap;color:var(--brown);text-decoration:none;transition:all 0.2s;font-family:'EB Garamond',serif}
+.dropdown a:hover{background:rgba(215,159,46,0.12);color:var(--gold-deep)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.burger span{width:24px;height:2px;background:var(--brown);display:block}
+/* HERO */
+.svc-hero{position:relative;padding:9rem 2rem 3.5rem;text-align:center;overflow:hidden;background:radial-gradient(ellipse 70% 60% at 50% 20%, rgba(247,186,201,0.4) 0%, transparent 62%),linear-gradient(160deg,var(--pink-soft) 0%,var(--cream) 60%)}
+.svc-hero .eyebrow{font-family:'Cormorant',serif;letter-spacing:0.35em;font-size:0.82rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.svc-hero h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.4rem,5.5vw,4rem);color:var(--brown);line-height:1.08;letter-spacing:0.01em}
+.svc-hero .subtitle{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--brown-soft);margin-top:1.2rem;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.5}
+/* BODY */
+.svc-body{max-width:760px;margin:0 auto;padding:4rem 2rem 2rem}
+.svc-body p{margin-bottom:1.4rem;font-size:1.13rem;color:var(--brown)}
+.svc-body h2{font-family:'Cormorant',serif;font-weight:500;font-size:1.9rem;color:var(--brown);margin:2.5rem 0 1.2rem;text-align:center}
+.svc-quote{padding:2.5rem 2rem;text-align:center;margin:2.5rem 0;background:linear-gradient(135deg,var(--baby-pink),var(--pink-mid) 70%,var(--gold-soft) 150%)}
+.svc-quote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.45;color:var(--white);max-width:720px;margin:0 auto;text-shadow:0 1px 12px rgba(140,80,40,0.18)}
+.plist{list-style:none;max-width:680px;margin:1.5rem auto}
+.plist li{position:relative;padding:0.5rem 0 0.5rem 2rem;font-size:1.1rem;color:var(--brown);border-bottom:1px solid var(--pink-beige)}
+.plist li:last-child{border-bottom:none}
+.plist li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:0.9rem;top:0.7rem}
+/* includes + price card */
+.svc-card{max-width:680px;margin:3rem auto;background:var(--white);border:1px solid var(--gold-soft);border-radius:20px;padding:2.5rem;box-shadow:0 20px 50px rgba(215,159,46,0.08)}
+.svc-card .meta{text-align:center;font-family:'Cormorant',serif;letter-spacing:0.1em;color:var(--gold-deep);font-size:0.95rem;text-transform:uppercase;margin-bottom:1.5rem}
+.svc-card h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.3rem;color:var(--brown);text-align:center;margin-bottom:1.2rem}
+.ilist{list-style:none;margin:0 auto 1.5rem;max-width:520px}
+.ilist li{position:relative;padding:0.45rem 0 0.45rem 1.8rem;color:var(--brown-soft);font-size:1.05rem}
+.ilist li::before{content:'☽';position:absolute;left:0;color:var(--gold);font-size:0.85rem;top:0.6rem}
+.price-block{text-align:center;border-top:1px solid var(--pink-beige);padding-top:1.5rem;margin-top:1rem}
+.price-block .label{font-family:'Cormorant',serif;letter-spacing:0.2em;font-size:0.8rem;color:var(--gold-deep);text-transform:uppercase;display:block;margin-bottom:0.4rem}
+.price-block .amount{font-family:'Cormorant',serif;font-weight:600;font-size:2.4rem;color:var(--brown)}
+.price-block .pnote{font-size:0.95rem;color:var(--brown-soft);font-style:italic;margin-top:0.6rem}
+.svc-note{max-width:680px;margin:0 auto;font-size:1rem;color:var(--brown-soft);font-style:italic;text-align:center;line-height:1.6}
+.cta-wrap{text-align:center;margin:3rem 0 1rem}
+.btn{display:inline-block;padding:1rem 2.8rem;border-radius:2.5rem;background:var(--gold);color:#fff;font-family:'Cormorant',serif;font-size:1.05rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all 0.35s}
+.btn:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 10px 25px rgba(194,141,45,0.25)}
+.closing-line{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--gold-deep);max-width:640px;margin:2rem auto 0;line-height:1.5}
+/* FOOTER */
+footer{background:var(--brown);color:rgba(255,255,255,0.75);text-align:center;padding:4rem 2rem 2.5rem;margin-top:4rem}
+footer .f-contact{margin:2rem 0;font-size:1rem;line-height:2}
+footer .f-contact a{color:rgba(255,255,255,0.8);text-decoration:none}
+footer .f-contact a:hover{color:var(--gold-soft)}
+footer .f-line{width:60px;height:1px;background:var(--gold);margin:2rem auto}
+footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(max-width:880px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:74%;background:var(--cream);flex-direction:column;justify-content:center;gap:1.5rem;transition:right 0.4s;box-shadow:-10px 0 40px rgba(92,69,35,0.1);overflow-y:auto;padding:5rem 1rem}
+  .nav-links.open{right:0}
+  .burger{display:flex;z-index:130}
+  .has-dropdown{width:100%;text-align:center}
+  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;background:transparent;min-width:auto;padding:0.4rem 0 0;margin-top:0.3rem}
+  .dropdown a{font-size:0.92rem;color:var(--brown-soft);text-align:center}
+  .caret{display:none}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo-mark.png" alt="" style="height:38px;width:auto;display:block">
+    <span class="nl-name">Milica</span><span class="nl-code">DIVINE CODE</span>
+  </a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="o-meni.html">O meni</a></li>
+    <li class="has-dropdown">
+      <a href="index.html#usluge" class="dd-trigger">Usluge <span class="caret">▾</span></a>
+      <div class="dropdown">
+        <a href="golden-key.html">Golden Key analiza</a>
+        <a href="show-up.html">SHOW UP</a>
+        <a href="sunkissed.html">SUNKISSED</a>
+        <a href="golden-timing.html">Golden Timing</a>
+        <a href="golden-key-mentorship.html">Golden Key Mentorship</a>
+        <a href="cosmic-match.html">Cosmic Match</a>
+        <a href="golden-silence.html">Golden Silence</a>
+      </div>
+    </li>
+    <li><a href="index.html#proizvodi">Proizvodi</a></li>
+    <li><a href="afirmacije.html">Divine invokacija</a></li>
+    <li><a href="index.html#kontakt" class="nav-cta">Zakaži</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Meni"><span></span><span></span><span></span></button>
+</nav>
+<header class="svc-hero">
+  <span class="eyebrow">Astro-coaching · 12. kuća</span>
+  <h1>Golden Silence</h1>
+  <p class="subtitle">Where inner silence becomes your greatest wisdom.</p>
+</header>
+
+<div class="svc-body reveal">
+  <p>Postoje trenuci kada nije potrebno pronaći još jedan odgovor. Potrebno je pronaći prostor u kome odgovor može da nastane.</p>
+  <p>Golden Silence je duboko personalizovana astro–coaching konsultacija namenjena svima koji žele da razviju unutrašnji mir, intuiciju i sposobnost da kroz sopstvenu natalnu kartu pronađu svoj jedinstveni put ka tišini.</p>
+  <p>U astrologiji, tišina pripada 12. kući – prostoru introspekcije, snova, meditacije, znaku Riba, Neptunu i svim onim suptilnim porukama koje ne dolaze kroz buku spoljnog sveta. Kvalitet naše 12. kuće direktno utiče na kvalitet 1. kuće i podznaka – način na koji živimo, stvaramo, delujemo i zračimo kroz svoje fizičko postojanje.</p>
+  <p>U energetskim disciplinama poput energetske psihologije i energetske psihijatrije, upravo tišina predstavlja mesto na kome počinje istinsko isceljenje.</p>
+  </div>
+  <div class="svc-quote"><p>Tišina nije mesto na kome pronalazimo odgovore. Tišina je mesto na kome odgovori nastaju.</p></div>
+  <div class="svc-body">
+  <p>Na ovoj konsultaciji zajedno istražujemo tvoju 12. kuću, Neptuna, Ribe i Jupitera, ali i odnos 3, 8. i 12. kuće – upravo one delove natalne karte koji govore o unutrašnjem svetu, intuiciji, podsvesnim obrascima, transformaciji i duhovnim potencijalima.</p>
+  <p>Na osnovu tvoje natalne karte kreiram potpuno personalizovan plan razvoja tvog Golden Silence kvaliteta, kroz pažljivo odabrane meditativne, energetske i kontemplativne tehnike koje možeš primenjivati u svakodnevnom životu.</p>
+  <p>Ova konsultacija namenjena je ljudima koji su spremni da hrabro zakorače u prostor sopstvene tišine. Jer upravo u tišini možemo susresti svoje strahove, ali i razviti duboko poverenje u sebe. Onaj ko nauči da vidi kroz svoje strahove, postaje istinski slobodan.</p>
+  <p>Kroz Golden Silence otkrivamo i ono što tvoju dušu prirodno inspiriše, raduje i pokreće, jer tek kada se um umiri, postaje jasno šta je zaista tvoje.</p>
+  </div>
+  <div class="svc-quote"><p>Velike ideje, vizije i najvažnije životne odluke ne nastaju u buci. One nastaju u tišini.</p></div>
+  <div class="svc-body">
+</div>
+
+<div class="svc-card reveal">
+  <div class="meta">Trajanje: 75 minuta · isključivo večernji termini (20–22h)</div>
+  <h3>Šta uključuje</h3>
+  <ul class="ilist">
+    <li>istraživanje 12. kuće, Neptuna, Riba i Jupitera, i odnosa 3, 8. i 12. kuće</li>
+    <li>personalizovan plan razvoja tvog Golden Silence kvaliteta</li>
+    <li>pažljivo odabrane meditativne, energetske i kontemplativne tehnike za svakodnevni život</li>
+    <li>individualnu konsultaciju u trajanju od 75 minuta</li>
+  </ul>
+  <div class="price-block">
+    <span class="label">Investicija</span>
+    <div class="amount">130 €</div>
+    
+  </div>
+</div>
+
+<div class="cta-wrap reveal">
+  <a href="index.html#kontakt" class="btn">Zakaži konsultaciju</a>
+</div>
+
+<footer id="kontakt">
+  <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:215px;max-width:62vw;height:auto;display:block;margin:0 auto">
+  <div class="f-contact">
+    <a href="mailto:contact@milicadivinecode.com">contact@milicadivinecode.com</a><br>
+    <a href="https://instagram.com/milica.divinecode">@milica.divinecode</a> · <a href="tel:+381600602442">+381 60 060 2442</a>
+  </div>
+  <div class="f-line"></div>
+  <p class="copyright">© 2026 Milica Divine Code · Sva prava zadržana</p>
+</footer>
+<script>
+const burger=document.getElementById('burger');
+const navlinks=document.getElementById('navlinks');
+burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
+const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
