@@ -116,7 +116,7 @@ nav{
 .hero-text{text-align:left;max-width:460px}
 .hero-eyebrow{
   font-family:'Cormorant',serif;letter-spacing:0.32em;font-size:0.82rem;
-  color:var(--gold-deep);text-transform:uppercase;margin-bottom:1.2rem;display:block;
+  color:var(--brown);text-transform:uppercase;margin-bottom:1.2rem;display:block;
 }
 .hero h1{
   font-family:'Cormorant',serif;font-weight:500;
@@ -226,6 +226,17 @@ section{position:relative}
 /* ============ PRODUCTS (digital) ============ */
 .products{padding:7rem 0;background:var(--cream)}
 .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.dl-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.5rem;border:1px solid var(--gold);border-radius:2rem;color:var(--gold-deep);font-family:'Cormorant',serif;font-size:0.95rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.5)}
+.dl-btn:hover{background:var(--gold);color:#fff}
+/* popup */
+.popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(60,40,25,0.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1.5rem;animation:popfade 0.4s ease}
+.popup-overlay.show{display:flex}
+@keyframes popfade{from{opacity:0}to{opacity:1}}
+.popup-box{position:relative;max-width:780px;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);animation:poprise 0.5s cubic-bezier(.2,.8,.2,1)}
+@keyframes poprise{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+.popup-box img{display:block;width:100%;height:auto}
+.popup-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);color:var(--brown);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s;box-shadow:0 4px 14px rgba(0,0,0,0.2)}
+.popup-close:hover{background:#fff;transform:rotate(90deg)}
 .prod{display:flex;gap:1.5rem;align-items:flex-start;background:var(--white);border:1px solid var(--pink-beige);border-radius:16px;padding:2rem}
 .prod .picon{flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--pink-soft);display:flex;align-items:center;justify-content:center;font-family:'Cormorant',serif;font-size:1.5rem;color:var(--gold)}
 .prod h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.3rem;color:var(--brown);margin-bottom:0.5rem}
@@ -319,9 +330,20 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
   .tcard{width:300px}
 }
 .hero-btns .btn-outline{margin-left:0}
+.ig-link{display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
+
+<!-- ============ WORKSHOP POPUP ============ -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-box">
+    <button class="popup-close" id="popupClose" aria-label="Zatvori">&times;</button>
+    <a href="mailto:milicadivinecode@gmail.com?subject=Golden%20Divine%20Wealth%20radionica" aria-label="Golden Divine Wealth radionica">
+      <img src="workshop-popup.jpg" alt="Golden Divine Wealth — Premium Weekend Intensive">
+    </a>
+  </div>
+</div>
 
 <!-- ============ NAV ============ -->
 <nav id="nav">
@@ -345,7 +367,7 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
     </li>
     <li><a href="#proizvodi">Proizvodi</a></li>
     <li><a href="afirmacije.html">Divine invokacija</a></li>
-    <li><a href="#kontakt" class="nav-cta">Zakaži</a></li>
+    <li><a href="mailto:milicadivinecode@gmail.com" class="nav-cta">Zakaži</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Meni"><span></span><span></span><span></span></button>
 </nav>
@@ -470,7 +492,7 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
 <!-- ============ QUOTE ============ -->
 <section class="quote">
   <blockquote>
-    „Ništa što nije zapisano u tvojoj natalnoj karti — ne može se pojaviti u tvom životu. Tu su svi odgovori, ključevi i potencijali."
+    „Verujem da svako od nas nosi jedinstven unutrašnji kod. Kada ga prepoznamo, prestajemo da tražimo odgovore izvan sebe i počinjemo da živimo u skladu sa onim što stvarno jesmo — onako kako je od Univerzuma i zamišljeno."
     <span class="qsrc">— Milica Divine Code</span>
   </blockquote>
 </section>
@@ -489,6 +511,7 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
         <div>
           <h3>Divine Birthday Journal</h3>
           <p>Usaglasi svoje želje sa ritmom Univerzuma. Vodič kroz solarni povratak — prostor za tvoje namere, vizije i rituale za novu solarnu godinu.</p>
+          <a href="divine-birthday-journal.pdf" download class="dl-btn">✦ Besplatno preuzimanje</a>
         </div>
       </div>
       <div class="prod">
@@ -496,6 +519,7 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
         <div>
           <h3>Inner Self Workbook</h3>
           <p>Radna sveska za povezivanje sa svojim unutrašnjim ja — vežbe, pitanja i refleksije za dublje razumevanje sebe.</p>
+          <a href="inner-self-workbook.pdf" download class="dl-btn">✦ Besplatno preuzimanje</a>
         </div>
       </div>
     </div>
@@ -546,8 +570,8 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
     <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:215px;max-width:62vw;height:auto;display:block;margin:0 auto">
   </div>
   <div class="f-contact">
-    <a href="mailto:contact@milicadivinecode.com">contact@milicadivinecode.com</a><br>
-    <a href="https://instagram.com/milica.divinecode">@milica.divinecode</a> · <a href="tel:+381600602442">+381 60 060 2442</a>
+    <a href="mailto:milicadivinecode@gmail.com">milicadivinecode@gmail.com</a><br>
+    <a href="https://instagram.com/milica.divinecode" class="ig-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>@milica.divinecode</a>
   </div>
   <div class="f-line"></div>
   <p class="copyright">© 2026 Milica Divine Code · Sva prava zadržana</p>
@@ -585,6 +609,25 @@ function subscribe(){
   e.value='';
   document.getElementById('nlsuccess').style.display='block';
 }
+
+// workshop popup — once per day
+(function(){
+  const popup=document.getElementById('popup');
+  const closeBtn=document.getElementById('popupClose');
+  const today=new Date().toISOString().slice(0,10);
+  let seen=null;
+  try{ seen=localStorage.getItem('mdc_popup'); }catch(e){}
+  function close(){ popup.classList.remove('show'); }
+  if(seen!==today){
+    setTimeout(()=>{
+      popup.classList.add('show');
+      try{ localStorage.setItem('mdc_popup', today); }catch(e){}
+    }, 900);
+  }
+  closeBtn.addEventListener('click', close);
+  popup.addEventListener('click', (ev)=>{ if(ev.target===popup) close(); });
+  document.addEventListener('keydown', (ev)=>{ if(ev.key==='Escape') close(); });
+})();
 </script>
 </body>
 </html>

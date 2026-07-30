@@ -11,7 +11,16 @@ Da bi radio, **svi fajlovi moraju ostati u istom folderu** (HTML + slike + logo)
   `golden-timing.html`, `golden-key-mentorship.html`, `cosmic-match.html`,
   `golden-silence.html`
 - Slike/logo: `milica-hero.jpg`, `milica-portrait.jpg`, `milica-smile.jpg`,
-  `milica-yellow1.jpg`, `milica-yellow2.jpg`, `logo-full.png`, `logo-mark.png`
+  `milica-yellow1.jpg`, `milica-yellow2.jpg`, `logo-full.png`, `logo-mark.png`,
+  `workshop-popup.jpg` (popup banner)
+- Besplatni PDF-ovi za preuzimanje: `divine-birthday-journal.pdf`,
+  `inner-self-workbook.pdf`
+
+## Ponašanje
+- Popup sa radionicom (`workshop-popup.jpg`) iskoči pri ulasku na početnu,
+  sa X za zatvaranje; ne pojavljuje se ponovo istog dana (pamti se u browseru).
+- Sva „Zakaži"/kontakt dugmad otvaraju mejl na `milicadivinecode@gmail.com`.
+- Footer: mejl + Instagram (@milica.divinecode). Broj telefona uklonjen.
 
 ## Deploy na Vercel — najlakši način (bez Git-a)
 1. Instaliraj Node.js (nodejs.org) ako ga nemaš.
