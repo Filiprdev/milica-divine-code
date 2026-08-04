@@ -559,10 +559,13 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
     <span class="eyebrow">Newsletter</span>
     <h2>Golden Astro &amp;<br>Divine Stories</h2>
     <p>Astrološki uvidi, lunarni ciklusi i lične priče iz svemira, direktno u tvoj inbox.</p>
-    <div class="nl-form">
-      <input type="email" id="email" placeholder="tvoja.adresa@email.com">
-      <button onclick="subscribe()">Pretplati se</button>
-    </div>
+    <form class="nl-form" id="nlform" action="https://assets.mailerlite.com/jsonp/2554799/forms/194859329157859093/subscribe" method="post" target="ml_iframe">
+      <input type="email" id="email" name="fields[email]" placeholder="tvoja.adresa@email.com" autocomplete="email" required>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <button type="submit">Pretplati se</button>
+    </form>
+    <iframe name="ml_iframe" style="display:none" title="MailerLite"></iframe>
     <p class="nl-note">Bez spama. Samo zvezde. Možeš se odjaviti u bilo kom trenutku.</p>
     <p class="nl-success" id="nlsuccess">✦ Dobrodošla u kosmički krug. Proveri svoj inbox. ✦</p>
   </div>
@@ -607,12 +610,12 @@ function card(o){return `<div class="tcard"><div class="stars">★★★★★</
 track.innerHTML = testimonials.map(card).join('') + testimonials.map(card).join('');
 
 // newsletter
-function subscribe(){
-  const e=document.getElementById('email');
-  if(!e.value||!e.value.includes('@'))return;
-  e.value='';
+document.getElementById('nlform').addEventListener('submit', function(e){
+  var email=document.getElementById('email');
+  if(!email.value || email.value.indexOf('@')===-1){ e.preventDefault(); return; }
   document.getElementById('nlsuccess').style.display='block';
-}
+  setTimeout(function(){ email.value=''; }, 800);
+});
 
 // workshop popup — once per day
 (function(){
