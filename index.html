@@ -228,18 +228,6 @@ section{position:relative}
 .prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .dl-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.5rem;border:1px solid var(--gold);border-radius:2rem;color:var(--gold-deep);font-family:'Cormorant',serif;font-size:0.95rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;background:rgba(255,255,255,0.5)}
 .dl-btn:hover{background:var(--gold);color:#fff}
-/* popup */
-.popup-overlay{position:fixed;inset:0;z-index:9999;background:rgba(60,40,25,0.55);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1.5rem;animation:popfade 0.4s ease}
-.popup-overlay.show{display:flex}
-@keyframes popfade{from{opacity:0}to{opacity:1}}
-.popup-box{position:relative;max-width:780px;width:100%;max-height:92vh;overflow-y:auto;border-radius:16px;overflow-x:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);animation:poprise 0.5s cubic-bezier(.2,.8,.2,1);background:var(--cream)}
-@keyframes poprise{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
-.popup-box img{display:block;width:100%;height:auto}
-.popup-cta{background:var(--cream);padding:1.3rem 1rem 1.5rem;text-align:center}
-.btn-popup{display:inline-block;padding:0.9rem 2.6rem;border-radius:2.5rem;background:var(--gold);color:#fff;font-family:'Cormorant',serif;font-size:1.05rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all 0.3s}
-.btn-popup:hover{background:var(--gold-deep);transform:translateY(-2px);box-shadow:0 10px 25px rgba(194,141,45,0.28)}
-.popup-close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:none;background:rgba(255,255,255,0.9);color:var(--brown);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s;box-shadow:0 4px 14px rgba(0,0,0,0.2);z-index:2}
-.popup-close:hover{background:#fff;transform:rotate(90deg)}
 .prod{display:flex;gap:1.5rem;align-items:flex-start;background:var(--white);border:1px solid var(--pink-beige);border-radius:16px;padding:2rem}
 .prod .picon{flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--pink-soft);display:flex;align-items:center;justify-content:center;font-family:'Cormorant',serif;font-size:1.5rem;color:var(--gold)}
 .prod h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.3rem;color:var(--brown);margin-bottom:0.5rem}
@@ -337,17 +325,6 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
 </style>
 </head>
 <body>
-
-<!-- ============ WORKSHOP POPUP ============ -->
-<div class="popup-overlay" id="popup">
-  <div class="popup-box">
-    <button class="popup-close" id="popupClose" aria-label="Zatvori">&times;</button>
-    <img src="workshop-popup.jpg" alt="Golden Divine Wealth — Premium Weekend Intensive">
-    <div class="popup-cta">
-      <a href="mailto:milicadivinecode@gmail.com?subject=Golden%20Divine%20Wealth%20radionica" class="btn-popup">Saznaj više</a>
-    </div>
-  </div>
-</div>
 
 <!-- ============ NAV ============ -->
 <nav id="nav">
@@ -617,24 +594,6 @@ document.getElementById('nlform').addEventListener('submit', function(e){
   setTimeout(function(){ email.value=''; }, 800);
 });
 
-// workshop popup — once per day
-(function(){
-  const popup=document.getElementById('popup');
-  const closeBtn=document.getElementById('popupClose');
-  const today=new Date().toISOString().slice(0,10);
-  let seen=null;
-  try{ seen=localStorage.getItem('mdc_popup'); }catch(e){}
-  function close(){ popup.classList.remove('show'); }
-  if(seen!==today){
-    setTimeout(()=>{
-      popup.classList.add('show');
-      try{ localStorage.setItem('mdc_popup', today); }catch(e){}
-    }, 900);
-  }
-  closeBtn.addEventListener('click', close);
-  popup.addEventListener('click', (ev)=>{ if(ev.target===popup) close(); });
-  document.addEventListener('keydown', (ev)=>{ if(ev.key==='Escape') close(); });
-})();
 </script>
 </body>
 </html>
