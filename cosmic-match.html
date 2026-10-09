@@ -86,6 +86,25 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
   .caret{display:none}
 }
 .ig-link{display:inline-flex;align-items:center}
+/* uslovi saradnje */
+.terms-link{display:inline-block;margin-top:1.4rem;font-family:'Cormorant',serif;font-size:0.9rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--brown-soft);background:none;border:none;border-bottom:1px solid rgba(215,159,46,0.4);padding:0.3rem 0.2rem;cursor:pointer;transition:color 0.3s,border-color 0.3s}
+.terms-link:hover{color:var(--gold-deep);border-color:var(--gold)}
+.terms-overlay{position:fixed;inset:0;z-index:200;background:rgba(92,69,35,0.5);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:1.5rem;animation:tfade 0.35s ease}
+.terms-overlay.show{display:flex}
+@keyframes tfade{from{opacity:0}to{opacity:1}}
+.terms-box{position:relative;background:var(--cream);max-width:640px;width:100%;max-height:86vh;overflow-y:auto;border:1px solid var(--gold-soft);border-radius:20px;padding:3rem 2.6rem 2.6rem;box-shadow:0 30px 70px rgba(92,69,35,0.28);animation:trise 0.45s cubic-bezier(.2,.8,.2,1)}
+@keyframes trise{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.terms-box h2{font-family:'Cormorant',serif;font-weight:500;font-size:1.8rem;color:var(--brown);text-align:center;margin-bottom:0.4rem}
+.terms-box .t-sub{font-family:'Cormorant Garamond',serif;font-style:italic;text-align:center;color:var(--brown-soft);font-size:1.05rem}
+.terms-box .t-line{width:50px;height:1px;background:var(--gold);margin:1.4rem auto 2rem}
+.terms-box h3{font-family:'Cormorant',serif;font-weight:600;font-size:0.92rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);margin:2.1rem 0 0.9rem}
+.terms-box h3:first-of-type{margin-top:0}
+.terms-box ul{list-style:none}
+.terms-box li{position:relative;padding:0.4rem 0 0.4rem 1.6rem;font-size:1.02rem;line-height:1.7;color:var(--brown)}
+.terms-box li::before{content:'✦';position:absolute;left:0;top:0.55rem;color:var(--gold);font-size:0.8rem}
+.terms-close{position:absolute;top:14px;right:16px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(215,159,46,0.3);background:rgba(255,255,255,0.7);color:var(--brown);font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.25s}
+.terms-close:hover{background:#fff;border-color:var(--gold);transform:rotate(90deg)}
+@media(max-width:600px){.terms-box{padding:2.6rem 1.5rem 2rem}.terms-box h3{font-size:0.86rem;letter-spacing:0.1em}.terms-box li{font-size:0.98rem}}
 </style>
 </head>
 <body>
@@ -100,12 +119,12 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
       <a href="index.html#usluge" class="dd-trigger">Usluge <span class="caret">▾</span></a>
       <div class="dropdown">
         <a href="golden-key.html">Golden Key analiza</a>
-        <a href="show-up.html">SHOW UP</a>
+        <!-- privremeno skriveno: <a href="show-up.html">SHOW UP</a> -->
         <a href="sunkissed.html">SUNKISSED</a>
         <a href="golden-timing.html">Golden Timing</a>
         <a href="golden-key-mentorship.html">Golden Key Mentorship</a>
         <a href="cosmic-match.html">Cosmic Match</a>
-        <a href="golden-silence.html">Golden Silence</a>
+        <!-- privremeno skriveno: <a href="golden-silence.html">Golden Silence</a> -->
       </div>
     </li>
     <li><a href="index.html#proizvodi">Proizvodi</a></li>
@@ -158,8 +177,39 @@ footer .copyright{font-size:0.85rem;opacity:0.6;font-style:italic}
 
 <div class="cta-wrap reveal">
   <a href="mailto:milicadivinecode@gmail.com" class="btn">Zakaži konsultaciju</a>
+  <div><button class="terms-link" id="termsOpen">Uslovi saradnje</button></div>
 </div>
 <p class="closing-line reveal">Svaki odnos je jedinstven. Baš kao i ljudi koji ga stvaraju.</p>
+
+<!-- ============ USLOVI SARADNJE ============ -->
+<div class="terms-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+  <div class="terms-box">
+    <button class="terms-close" id="termsClose" aria-label="Zatvori">&times;</button>
+    <h2 id="termsTitle">Uslovi saradnje</h2>
+    <p class="t-sub">Rezervacija, plaćanje i potvrda termina</p>
+    <div class="t-line"></div>
+
+    <h3>Rezervacija i plaćanje</h3>
+    <ul>
+      <li>Rezervacija individualnih konsultacija vrši se putem sajta Divine Code ili Instagram profila @milica.divinecode.</li>
+      <li>Nakon usaglašavanja termina klijent dobija instrukcije za plaćanje.</li>
+      <li>Uplatu je potrebno izvršiti u roku od tri radna dana od dostavljanja instrukcija, kako bi rezervacija bila potvrđena.</li>
+      <li>Do evidentiranja uplate termin ima status privremene rezervacije. Ukoliko uplata ne bude evidentirana u navedenom roku, privremena rezervacija prestaje da važi, a termin postaje dostupan za nova zakazivanja.</li>
+      <li>Ukoliko je konsultacija zakazana u roku kraćem od tri radna dana, primenjuje se kraći rok za uplatu, koji se saopštava prilikom zakazivanja.</li>
+    </ul>
+
+    <h3>Načini plaćanja</h3>
+    <ul>
+      <li>Za klijente iz Srbije — uplata na dinarski poslovni račun, prema dostavljenim instrukcijama.</li>
+      <li>Za klijente iz inostranstva — način plaćanja dogovara se individualno, a detaljne instrukcije dostavljaju se prilikom zakazivanja konsultacije.</li>
+    </ul>
+
+    <h3>Potvrda rezervacije</h3>
+    <ul>
+      <li>Termin se smatra konačno rezervisanim nakon evidentirane uplate, u skladu sa navedenim uslovima saradnje.</li>
+    </ul>
+  </div>
+</div>
 
 <footer id="kontakt">
   <img src="logo-full.png" alt="Milica Divine Code — Astrology &amp; Identity" style="width:215px;max-width:62vw;height:auto;display:block;margin:0 auto">
@@ -176,6 +226,19 @@ const navlinks=document.getElementById('navlinks');
 burger.addEventListener('click',()=>navlinks.classList.toggle('open'));
 const io=new IntersectionObserver((e)=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// uslovi saradnje modal
+(function(){
+  const m=document.getElementById('termsModal');
+  const openBtn=document.getElementById('termsOpen');
+  const closeBtn=document.getElementById('termsClose');
+  if(!m||!openBtn) return;
+  function show(){ m.classList.add('show'); document.body.style.overflow='hidden'; }
+  function hide(){ m.classList.remove('show'); document.body.style.overflow=''; }
+  openBtn.addEventListener('click', show);
+  closeBtn.addEventListener('click', hide);
+  m.addEventListener('click', (ev)=>{ if(ev.target===m) hide(); });
+  document.addEventListener('keydown', (ev)=>{ if(ev.key==='Escape' && m.classList.contains('show')) hide(); });
+})();
 </script>
 </body>
 </html>
